@@ -1,6 +1,12 @@
 <script>
 export default {
     props: ['movies', 'series'],
+    data() {
+        return {
+            en: "src/assets/en.png",
+            it: "src/assets/it.jpg",
+        }
+    }
 }
 </script>
 
@@ -12,9 +18,9 @@ export default {
         <h2>FILMS</h2>
         <!--/titolo-->
 
-        <ul v-for="movie in movies"> <!--ciclo-->
+        <ul>
 
-            <li>
+            <li v-for="movie in movies"><!--ciclo-->
                 <!--Titolo ******-->
                 <div>
                     <h4>Titolo Originale</h4>
@@ -30,7 +36,18 @@ export default {
                 <!--Lingua ******-->
                 <div>
                     <h4>lingua</h4>
-                    {{ movie.original_language }}
+
+                    <div class="language" v-if="movie.original_language === 'it'"><!--1 condizione-->
+                        <img :src="it" :alt="it">
+                    </div>
+
+                    <div class="language" v-if="movie.original_language === 'en'"><!--2 condizione-->
+                        <img :src="en" :alt="en">
+
+                    </div>
+                    <div class="language"> <!--3 condizione-->
+                        {{ movie.original_language }}
+                    </div>
                 </div>
                 <!--/Lingua ******-->
 
@@ -54,9 +71,10 @@ export default {
         <h2>Serie TV</h2>
         <!--title-->
 
-        <ul v-for="serie in series"> <!--ciclo-->
+        <ul>
 
-            <li>
+            <li v-for="serie in series"><!--ciclo-->
+
                 <!--Titolo ******-->
                 <div>
                     <h4>Titolo originale</h4>
@@ -72,7 +90,16 @@ export default {
                 <!--Lingua ******-->
                 <div>
                     <h4>lingua</h4>
-                    {{ serie.original_language }}
+
+                    <div class="language" v-if="serie.original_language === 'it'"><!--1 condizione-->
+                        <img :src="it" :alt="it">
+                    </div>
+                    <div class="language" v-if="serie.original_language === 'en'"><!--2 condizione-->
+                        <img :src="en" :alt="en">
+                    </div>
+                    <div class="language"><!--3 condizione-->
+                        {{ serie.original_language }}
+                    </div>
                 </div>
                 <!--/Lingua ******-->
 
@@ -92,5 +119,13 @@ export default {
 <style scoped lang="scss">
 .card {
     padding-bottom: 10px;
+
+    .language {
+        width: 2.1875rem;
+
+        img {
+            width: 100%;
+        }
+    }
 }
 </style>
