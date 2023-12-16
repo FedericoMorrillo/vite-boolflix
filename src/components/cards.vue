@@ -1,10 +1,18 @@
 <script>
 export default {
+    // i due array ottenuti
     props: ['movies', 'series'],
     data() {
         return {
+            //bandiere lingua
             en: "src/assets/en.png",
             it: "src/assets/it.jpg",
+
+            //immagine di coperrtina
+            imgConfig: {
+                baseImgUrl: "https://image.tmdb.org/t/p/",
+                sizePoster: "w342",
+            }
         }
     }
 }
@@ -15,12 +23,17 @@ export default {
     <div class="card">
 
         <!--titolo-->
-        <h2>FILMS</h2>
+        <h2 v-if="movies.length > 0">FILMS</h2>
         <!--/titolo-->
 
         <ul>
 
             <li v-for="movie in movies"><!--ciclo-->
+
+                <!--immagine copertina-->
+                <img :src="`${imgConfig.baseImgUrl}${imgConfig.sizePoster}${movie.poster_path}`" :alt="movie.original_name">
+                <!--/immagine copertina-->
+
                 <!--Titolo ******-->
                 <div>
                     <h4>Titolo Originale</h4>
@@ -68,12 +81,16 @@ export default {
     <div class="card">
 
         <!--title-->
-        <h2>Serie TV</h2>
+        <h2 v-if="series.length > 0">Serie TV</h2>
         <!--title-->
 
         <ul>
 
             <li v-for="serie in series"><!--ciclo-->
+
+                <!--immagine copertina-->
+                <img :src="`${imgConfig.baseImgUrl}${imgConfig.sizePoster}${serie.poster_path}`" :alt="serie.original_name">
+                <!--/immagine copertina-->
 
                 <!--Titolo ******-->
                 <div>
