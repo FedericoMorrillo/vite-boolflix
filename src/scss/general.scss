@@ -4,14 +4,45 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 
 //reset
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 //reset
 
 body {
     background-color: rgb(26, 24, 24);
     color: white;
-  }
+}
+
+
+//media query
+@media screen and (max-width: 768px) {
+    .card {
+        width: calc(100% / 2 - 20px) !important;
+    }
+
+    header {
+        .info {
+            li {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .card {
+        width: calc(100% - 20px) !important;
+    }
+
+    nav {
+        input {
+            width: 100px;
+        }
+    }
+}
+
+//media query

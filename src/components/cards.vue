@@ -34,7 +34,7 @@ export default {
 
 <template>
     <!--card-->
-    <div class="card">
+    <div class="row">
 
         <!--titolo-->
         <h2 class="title" v-if="movies.length > 0">FILMS</h2>
@@ -42,7 +42,7 @@ export default {
 
         <ul class="flex wrap">
 
-            <li v-for="movie in movies"><!--ciclo-->
+            <li class="card" v-for="movie in movies"><!--ciclo-->
 
                 <!--immagine copertina-->
                 <img :src="`${imgConfig.baseImgUrl}${imgConfig.sizePoster}${movie.poster_path}`" :alt="movie.original_name">
@@ -51,12 +51,12 @@ export default {
                 <!--informazioni-->
                 <div class="informazioni">
                     <!--TITOLO ******-->
-                    <div class="pad-b">
+                    <div class="pad-b t-center">
                         <h4>Titolo Originale</h4>
                         {{ movie.original_title }}
                     </div>
 
-                    <div class="pad-b">
+                    <div class="pad-b t-center">
                         <h4>Titolo</h4>
                         {{ movie.title }}
                     </div>
@@ -74,7 +74,7 @@ export default {
                             <img :src="en" :alt="en">
 
                         </div>
-                        <div class="language"> <!--3 condizione-->
+                        <div class="language" v-else> <!--3 condizione-->
                             {{ movie.original_language }}
                         </div>
                     </div>
@@ -91,9 +91,9 @@ export default {
                     <!--VOTO*****-->
 
                     <!--overwiew-->
-                    <div class="flex">
+                    <div>
                         <h4>Overwiew: </h4>
-                        <div>
+                        <div class="description t-center ">
                             {{ movie.overview }}
                         </div>
                     </div>
@@ -109,7 +109,7 @@ export default {
     <!--/card-->
 
     <!--card-->
-    <div class="card">
+    <div class="row">
 
         <!--title-->
         <h2 class="title" v-if="series.length > 0">Serie TV</h2>
@@ -117,7 +117,7 @@ export default {
 
         <ul class="flex wrap">
 
-            <li v-for="serie in series"><!--ciclo-->
+            <li class="card" v-for="serie in series"><!--ciclo-->
 
                 <!--immagine copertina-->
                 <img :src="`${imgConfig.baseImgUrl}${imgConfig.sizePoster}${serie.poster_path}`" :alt="serie.original_name">
@@ -125,12 +125,12 @@ export default {
 
                 <div class="informazioni">
                     <!--TITOLO ******-->
-                    <div>
+                    <div class="t-center">
                         <h4>Titolo originale</h4>
                         {{ serie.original_name }}
                     </div>
 
-                    <div>
+                    <div class="t-center">
                         <h4>titolo</h4>
                         {{ serie.name }}
                     </div>
@@ -146,7 +146,7 @@ export default {
                         <div class="language" v-if="serie.original_language === 'en'"><!--2 condizione-->
                             <img :src="en" :alt="en">
                         </div>
-                        <div class="language"><!--3 condizione-->
+                        <div class="language" v-else><!--3 condizione-->
                             {{ serie.original_language }}
                         </div>
                     </div>
@@ -162,9 +162,9 @@ export default {
                     <!--VOTO*****-->
 
                     <!--overwiew-->
-                    <div class="flex">
+                    <div>
                         <h4>Overwiew: </h4>
-                        <div>
+                        <div class="description t-center ">
                             {{ serie.overview }}
                         </div>
                     </div>
@@ -182,7 +182,7 @@ export default {
 @import "../scss/utils.scss";
 
 
-.card {
+.row {
     padding-bottom: 10px;
 
 
@@ -194,7 +194,7 @@ export default {
         font-weight: 700;
     }
 
-    li {
+    .card {
         position: relative;
         margin: .9375rem .625rem;
         width: calc(100% / 5 - 20px);
@@ -214,9 +214,16 @@ export default {
             background-color: rgba(0, 0, 0, 0.651);
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow-y: hidden;
             text-overflow: ellipsis ellipsis;
             opacity: 0;
+            cursor: pointer;
+
+            .description {
+                max-width: 100%;
+                max-height: 9.375rem;
+                overflow-y: scroll;
+            }
 
             &:hover {
                 opacity: 100%;

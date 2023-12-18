@@ -81,6 +81,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@import "../scss/general.scss";
 @import "../scss/utils.scss";
 
 header {
