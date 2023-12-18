@@ -47,11 +47,25 @@ export default {
             <h1 class="logo">BOOLFLIX</h1>
             <!--/logo-->
 
+            <!--info-->
+            <ul class="info flex">
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li>
+                    <a href="">News</a>
+                </li>
+                <li>
+                    <a href="">Contacts</a>
+                </li>
+            </ul>
+            <!--/info-->
+
             <!--ricerca-->
             <nav>
                 <form @submit.prevent="search"><!--scatena l' evento all' invio del form-->
                     <!--chiave di riferimento testo input-->
-                    <input type="text" v-model="keysearch" placeholder="Cerca"><button type="submit">Cerca</button>
+                    <input type="text" v-model="keysearch" placeholder="Cerca"><button type="submit">Search</button>
                 </form>
             </nav>
             <!--/ricerca-->
@@ -71,18 +85,36 @@ export default {
 
 header {
     background-color: rgb(26, 24, 24);
-    border-bottom: 5px solid rgb(54, 52, 52);
 }
 
 .contenitore {
     max-width: 75rem;
     margin: 0 auto;
+
+
 }
 
 .logo {
     font-size: 1.875rem;
     color: red;
     padding: .9375rem .9375rem;
+}
+
+.info {
+    align-items: center;
+
+    li {
+        margin: 0 1.25rem;
+        font-size: 1.125rem;
+        border-bottom: 3px solid trasparent;
+        border-bottom: 3px solid transparent;
+
+
+        &:hover {
+            border-bottom: 3px solid red;
+            cursor: pointer;
+        }
+    }
 }
 
 nav {
@@ -102,6 +134,7 @@ nav {
         height: 1.5625rem;
         border: none;
         cursor: pointer;
+        border: 2px solid transparent;
 
         &:hover {
             border: 2px solid grey;

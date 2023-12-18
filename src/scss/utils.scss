@@ -1,8 +1,31 @@
 //utils
+//flex
 .flex{
     display: flex;
 }
 .justify-btw{
     justify-content: space-between;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+//flex
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.pad-b{
+    padding-bottom: .3125rem ;
+}
+.pad-l{
+    padding-left: .3125rem;
 }
 //utils
