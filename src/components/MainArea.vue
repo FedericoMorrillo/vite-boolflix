@@ -38,14 +38,75 @@ export default {
 
 <template>
     <!--sezione di ricerca-->
-    <nav>
-        <form @submit.prevent="search"><!--scatena l' evento all' invio del form-->
-            <!--chiave di riferimento testo input-->
-            <input type="text" v-model="keysearch" placeholder="Cerca"><button type="submit">Cerca</button>
-        </form>
-    </nav>
+    <header>
+
+        <!--contenitore-->
+        <div class="container flex justify-btw">
+
+            <!--logo-->
+            <h1 class="logo">BOOLFLIX</h1>
+            <!--/logo-->
+
+            <!--ricerca-->
+            <nav>
+                <form @submit.prevent="search"><!--scatena l' evento all' invio del form-->
+                    <!--chiave di riferimento testo input-->
+                    <input type="text" v-model="keysearch" placeholder="Cerca"><button type="submit">Cerca</button>
+                </form>
+            </nav>
+            <!--/ricerca-->
+
+        </div>
+        <!--contenitore-->
+
+    </header>
     <!--/sezione di ricerca-->
 
 
     <Cards :movies="movies" :series="series" />
 </template>
+
+<style scoped lang="scss">
+@import "../scss/utils.scss";
+
+header {
+    background-color: rgb(26, 24, 24);
+    border-bottom: 5px solid rgb(54, 52, 52);
+}
+
+.contenitore {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.875rem;
+    color: red;
+    padding: .9375rem .9375rem;
+}
+
+nav {
+    padding: .9375rem .9375rem;
+
+    input {
+        background-color: rgb(58, 56, 56);
+        color: white;
+        height: 1.5625rem;
+        border-color: rgb(0, 0, 0);
+        border: none;
+    }
+
+    button {
+        background-color: rgb(54, 52, 52);
+        color: white;
+        height: 1.5625rem;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            border: 2px solid grey;
+        }
+    }
+
+}
+</style>
