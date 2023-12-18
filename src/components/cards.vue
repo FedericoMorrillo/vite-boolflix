@@ -1,7 +1,11 @@
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
     // i due array ottenuti
     props: ['movies', 'series'],
+    components: {
+        FontAwesomeIcon,
+    },
     data() {
         return {
             //bandiere lingua
@@ -14,7 +18,17 @@ export default {
                 sizePoster: "w342",
             }
         }
-    }
+    },
+    methods: {
+        starVote(vote, index) {
+            // Calcola quante stelle piene sono necessarie in base al voto calcolato per intero e arrotondato per eccesso
+            const filledStars = Math.ceil(vote / 2);
+
+            // Restituisce l'icona da utilizzare per la stella corrente
+            //                           true? -> condizione1   false? -> condizione2
+            return index + 1 <= filledStars ? ['fas', 'star'] : ['far', 'star'];
+        },
+    },
 }
 </script>
 
@@ -34,7 +48,7 @@ export default {
                 <img :src="`${imgConfig.baseImgUrl}${imgConfig.sizePoster}${movie.poster_path}`" :alt="movie.original_name">
                 <!--/immagine copertina-->
 
-                <!--Titolo ******-->
+                <!--TITOLO ******-->
                 <div>
                     <h4>Titolo Originale</h4>
                     {{ movie.original_title }}
@@ -44,9 +58,9 @@ export default {
                     <h4>Titolo</h4>
                     {{ movie.title }}
                 </div>
-                <!--/Titolo ******-->
+                <!--/TITOLO ******-->
 
-                <!--Lingua ******-->
+                <!--LINGUA ******-->
                 <div>
                     <h4>lingua</h4>
 
@@ -62,14 +76,17 @@ export default {
                         {{ movie.original_language }}
                     </div>
                 </div>
-                <!--/Lingua ******-->
+                <!--/LINGUA ******-->
 
-                <!--Voto-->
+                <!--VOTO-->
                 <div>
                     <h4>voto</h4>
-                    {{ movie.vote_average }}
+
+                    <div v-for="i in 5">
+                        <font-awesome-icon :icon="starVote(movie.vote_average, i)" />
+                    </div>
                 </div>
-                <!--Voto*****-->
+                <!--VOTO*****-->
             </li>
 
         </ul>
@@ -92,7 +109,7 @@ export default {
                 <img :src="`${imgConfig.baseImgUrl}${imgConfig.sizePoster}${serie.poster_path}`" :alt="serie.original_name">
                 <!--/immagine copertina-->
 
-                <!--Titolo ******-->
+                <!--TITOLO ******-->
                 <div>
                     <h4>Titolo originale</h4>
                     {{ serie.original_name }}
@@ -102,9 +119,9 @@ export default {
                     <h4>titolo</h4>
                     {{ serie.name }}
                 </div>
-                <!--/Titolo ******-->
+                <!--/TITOLO ******-->
 
-                <!--Lingua ******-->
+                <!--LINGUA ******-->
                 <div>
                     <h4>lingua</h4>
 
@@ -118,14 +135,16 @@ export default {
                         {{ serie.original_language }}
                     </div>
                 </div>
-                <!--/Lingua ******-->
+                <!--/LiNGUA ******-->
 
-                <!--Voto-->
+                <!--VOTO-->
                 <div>
                     <h4>voto</h4>
-                    {{ serie.vote_average }}
+                    <div v-for="i in 5">
+                        <font-awesome-icon :icon="starVote(serie.vote_average, i)" />
+                    </div>
                 </div>
-                <!--Voto*****-->
+                <!--VOTO*****-->
             </li>
 
         </ul>
@@ -134,6 +153,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@import "../scss/general.scss";
+
 .card {
     padding-bottom: 10px;
 
